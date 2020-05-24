@@ -958,11 +958,16 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { -10, -10, -0.5 }	// Hictop BNV
+//#define NOZZLE_TO_PROBE_OFFSET { -10, -10, -0.5 }	// Hictop
+#define NOZZLE_TO_PROBE_OFFSET { +10, +59, -0.5 }	// BNV
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 10
+#define MIN_PROBE_EDGE 10		// BNV
+//#define MIN_PROBE_EDGE_LEFT   10
+#define MIN_PROBE_EDGE_RIGHT    20	// BNV to avoid sensor going out of bed on +X
+//#define MIN_PROBE_EDGE_FRONT  10
+#define MIN_PROBE_EDGE_BACK     70	// BNV to avoid sensor going out of bed on +Y
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
