@@ -21,13 +21,29 @@
  */
 #pragma once
 
-#include <stdint.h>
+#include "serial.h"
+#include "../module/motion.h"
 
-typedef uint32_t millis_t;
+class SectionLog {
+public:
+  SectionLog(PGM_P const msg=nullptr, bool inbug=true) {
+    the_msg = msg;
+    if ((debug = inbug)) echo_msg(PSTR(">>>"));
+  }
 
-#define SEC_TO_MS(N) millis_t((N)*1000UL)
-#define MIN_TO_MS(N) SEC_TO_MS((N)*60UL)
-#define MS_TO_SEC(N) millis_t((N)/1000UL)
+  ~SectionLog() { if (debug) echo_msg(PSTR("<<<")); }
 
-#define PENDING(NOW,SOON) ((int32_t)(NOW-(SOON))<0)
-#define ELAPSED(NOW,SOON) (!PENDING(NOW,SOON))
+private:
+  PGM_P the_msg;
+  bool debug;
+
+  void echo_msg(PGM_P const pre) {
+    serialprintPGM(pre);
+    if (the_msg) {
+      SERIAL_CHAR(' ');
+      serialprintPGM(the_msg);
+    }
+    SERIAL_CHAR(' ');
+    print_xyz(current_position);
+  }
+};

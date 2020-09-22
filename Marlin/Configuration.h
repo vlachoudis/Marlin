@@ -329,11 +329,11 @@
  */
 #define PSU_CONTROL				// BNV
 #define PSU_NAME      "Vasilis Power Supply"	// BNV
-#define PS_ON_PIN     69			// BNV analog A15
-#define TEMP_1_PIN    12			// BNV remapped analog pin from pins_RAMPS.h to avoid clash with 69=A15
 
 #if ENABLED(PSU_CONTROL)
-  #define PSU_ACTIVE_STATE HIGH      // BNV Set 'LOW' for ATX, 'HIGH' for X-Box
+  #define PS_ON_PIN     69          // BNV analog A15
+  #define TEMP_1_PIN    12          // BNV remapped analog pin from pins_RAMPS.h to avoid clash with 69=A15
+  #define PSU_ACTIVE_STATE HIGH     // BNV Set 'LOW' for ATX, 'HIGH' for X-Box
 
   //#define PSU_DEFAULT_OFF         // Keep power off until enabled directly with M80
   //#define PSU_POWERUP_DELAY 250   // (ms) Delay for the PSU to warm up to full power
