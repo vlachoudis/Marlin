@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Vasilis, Hictop)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -331,8 +331,11 @@
 #define PSU_NAME      "Vasilis Power Supply"	// BNV
 
 #if ENABLED(PSU_CONTROL)
-  #define PS_ON_PIN     69          // BNV analog A15
-  #define TEMP_1_PIN    12          // BNV remapped analog pin from pins_RAMPS.h to avoid clash with 69=A15
+//  #define PS_ON_PIN     69          // BNV analog A15
+//  #define TEMP_1_PIN    12          // BNV remapped analog pin from pins_RAMPS.h to avoid clash with 69=A15
+  #define PS_ON_PIN     19          // BNV analog Zmax
+  #define Z_MAX_PIN     15          // BNV same as Ymax
+
   #define PSU_ACTIVE_STATE HIGH     // BNV Set 'LOW' for ATX, 'HIGH' for X-Box
 
   //#define PSU_DEFAULT_OFF         // Keep power off until enabled directly with M80
@@ -1001,12 +1004,11 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 10		// BNV
-//#define MIN_PROBE_EDGE_LEFT   10
-#define MIN_PROBE_EDGE_RIGHT    20	// BNV to avoid sensor going out of bed on +X
-//#define MIN_PROBE_EDGE_FRONT  10
-#define MIN_PROBE_EDGE_BACK     70	// BNV to avoid sensor going out of bed on +Y
-//#define PROBING_MARGIN 10
+#define PROBING_MARGIN 10		// BNV
+//#define PROBING_MARGIN_LEFT   10
+#define PROBING_MARGIN_RIGHT    20	// BNV to avoid sensor going out of bed on +X
+//#define PROBING_MARGIN_FRONT  10
+#define PROBING_MARGIN_BACK     70	// BNV to avoid sensor going out of bed on +Y
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_SPEED (133*60)
