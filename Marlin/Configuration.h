@@ -332,8 +332,8 @@
 #if ENABLED(PSU_CONTROL)
 //  #define PS_ON_PIN     69          // BNV analog A15
 //  #define TEMP_1_PIN    12          // BNV remapped analog pin from pins_RAMPS.h to avoid clash with 69=A15
-  #define PS_ON_PIN     19          // BNV analog Zmax
-  #define Z_MAX_PIN     15          // BNV same as Ymax
+  #define PS_ON_PIN     19          // BNV use Zmax
+  #define Z_MAX_PIN     15          // BNV remap Zmax to Ymax
 
   #define PSU_ACTIVE_STATE HIGH     // BNV Set 'LOW' for ATX, 'HIGH' for X-Box
 
