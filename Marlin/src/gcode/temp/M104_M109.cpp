@@ -88,7 +88,7 @@ void GcodeSuite::M104_M109(const bool isM109) {
   celsius_t temp = 0;
 
   // Accept 'I' if temperature presets are defined
-  #if PREHEAT_COUNT
+  #if HAS_PREHEAT
     got_temp = parser.seenval('I');
     if (got_temp) {
       const uint8_t index = parser.value_byte();
@@ -125,10 +125,8 @@ void GcodeSuite::M104_M109(const bool isM109) {
       thermalManager.auto_job_check_timer(isM109, true);
     #endif
 
-    #if HAS_STATUS_MESSAGE
-      if (thermalManager.isHeatingHotend(target_extruder) || !no_wait_for_cooling)
-        thermalManager.set_heating_message(target_extruder);
-    #endif
+    if (thermalManager.isHeatingHotend(target_extruder) || !no_wait_for_cooling)
+      thermalManager.set_heating_message(target_extruder);
   }
 
   TERN_(AUTOTEMP, planner.autotemp_M104_M109());

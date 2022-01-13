@@ -39,9 +39,8 @@ CaseLight caselight;
 bool CaseLight::on = CASE_LIGHT_DEFAULT_ON;
 
 #if CASE_LIGHT_IS_COLOR_LED
-  #include "leds/leds.h"
   constexpr uint8_t init_case_light[] = CASE_LIGHT_DEFAULT_COLOR;
-  LEDColor CaseLight::color = { init_case_light[0], init_case_light[1], init_case_light[2], TERN_(HAS_WHITE_LED, init_case_light[3]) };
+  LEDColor CaseLight::color = { init_case_light[0], init_case_light[1], init_case_light[2] OPTARG(HAS_WHITE_LED, init_case_light[3]) };
 #endif
 
 void CaseLight::update(const bool sflag) {
@@ -65,14 +64,12 @@ void CaseLight::update(const bool sflag) {
   #endif
 
   #if CASE_LIGHT_IS_COLOR_LED
-
-    leds.set_color(MakeLEDColor(color.r, color.g, color.b, color.w, n10ct));
-
+    leds.set_color(LEDColor(color.r, color.g, color.b OPTARG(HAS_WHITE_LED, color.w) OPTARG(NEOPIXEL_LED, n10ct)));
   #else // !CASE_LIGHT_IS_COLOR_LED
 
     #if CASELIGHT_USES_BRIGHTNESS
       if (pin_is_pwm())
-        analogWrite(pin_t(CASE_LIGHT_PIN), (
+        set_pwm_duty(pin_t(CASE_LIGHT_PIN), (
           #if CASE_LIGHT_MAX_PWM == 255
             n10ct
           #else
