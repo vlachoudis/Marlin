@@ -1193,7 +1193,7 @@
 //#define PROBING_MARGIN_LEFT   10
 #define PROBING_MARGIN_RIGHT    20	// BNV to avoid sensor going out of bed on +X
 //#define PROBING_MARGIN_FRONT  10
-#define PROBING_MARGIN_BACK     70	// BNV to avoid sensor going out of bed on +Y
+#define PROBING_MARGIN_BACK     10	// BNV to avoid sensor going out of bed on +Y
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_FEEDRATE (133*60)
@@ -1506,7 +1506,7 @@
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
   // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
-  //#define FILAMENT_RUNOUT_DISTANCE_MM 25
+  #define FILAMENT_RUNOUT_DISTANCE_MM 25		// BNV
 
   #ifdef FILAMENT_RUNOUT_DISTANCE_MM
     // Enable this option to use an encoder disc that toggles the runout pin
